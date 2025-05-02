@@ -31,8 +31,4 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera;
 
-	void Move_Forward(float InputValue);
-	void Move_Right(float InputValue);
-
-	void Turn(float InputValue);
 };

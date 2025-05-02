@@ -34,27 +34,4 @@ void ACPPCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAxis("Move_Forward", this, &ACPPCharacter::Move_Forward);
-	PlayerInputComponent->BindAxis("Move_Right", this, &ACPPCharacter::Move_Right);
-
-	PlayerInputComponent->BindAxis("Turn", this, &ACPPCharacter::Turn);
 }
-
-void ACPPCharacter::Move_Forward(float InputValue)
-{
-	FVector ForwardDirection = GetActorForwardVector();
-	AddMovementInput(ForwardDirection, InputValue);
-}
-
-void ACPPCharacter::Move_Right(float InputValue)
-{
-	FVector RightDirection = GetActorRightVector();
-	AddMovementInput(RightDirection, InputValue);
-}
-
-void ACPPCharacter::Turn(float InputValue)
-{
-	AddControllerYawInput(InputValue);
-}
-
