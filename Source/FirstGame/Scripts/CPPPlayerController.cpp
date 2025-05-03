@@ -11,6 +11,7 @@ void ACPPPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	InputComponent->BindAction("Jump", IE_Pressed, this, &ACPPPlayerController::Jump);
+	InputComponent->BindAction("Interact", IE_Pressed, this, &ACPPPlayerController::Interact);
 	InputComponent->BindAxis("Move_Forward", this, &ACPPPlayerController::Move_Forward);
 	InputComponent->BindAxis("Move_Right", this, &ACPPPlayerController::Move_Right);
 
@@ -45,4 +46,11 @@ void ACPPPlayerController::Jump()
 		MyCharacter->Jump();
 	}
 }
+
+void ACPPPlayerController::Interact()
+{
+
+}
+
+
 

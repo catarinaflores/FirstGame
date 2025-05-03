@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+
 #include "CPPPlayerController.generated.h"
 
 /**
@@ -22,4 +23,5 @@ private:
 	void Move_Right(float Value);
 	void Turn(float Value);
 	void Jump();
+	void Interact();
 };
