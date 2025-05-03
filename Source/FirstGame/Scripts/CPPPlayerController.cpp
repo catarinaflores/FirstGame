@@ -4,6 +4,8 @@
 #include "CPPPlayerController.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/Pawn.h"
+#include "CPPCharacter.h"
+#include "CPPDoorInterface.h"
 
 // Called to bind functionality to input
 void ACPPPlayerController::SetupInputComponent()

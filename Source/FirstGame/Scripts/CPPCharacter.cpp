@@ -3,6 +3,7 @@
 
 #include "CPPCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "CPPDoorInterface.h"
 
 // Sets default values
 ACPPCharacter::ACPPCharacter()
@@ -14,6 +15,8 @@ ACPPCharacter::ACPPCharacter()
 	Camera->SetupAttachment(RootComponent);
 	Camera->bUsePawnControlRotation = true;
 }
+
+
 
 // Called when the game starts or when spawned
 void ACPPCharacter::BeginPlay()

@@ -23,4 +23,5 @@ private:
 	void Turn(float Value);
 	void Jump();
 	void Interact();
+
 };
