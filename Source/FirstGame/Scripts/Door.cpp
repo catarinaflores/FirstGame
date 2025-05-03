@@ -23,11 +23,11 @@ void ADoor::BeginPlay()
 // Called every frame
 void ADoor::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime); 
 
 }
 
 void ADoor::OnInteract()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Batatas"));
+	UE_LOG(LogTemp, Warning, TEXT("Interacted"));
 }
