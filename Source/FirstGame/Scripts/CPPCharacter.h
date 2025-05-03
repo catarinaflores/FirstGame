@@ -35,5 +35,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-	void Interact();
+	void OnInteract();
+	UPROPERTY(BlueprintReadWrite)
+	AActor* OverlappingActor;
 };

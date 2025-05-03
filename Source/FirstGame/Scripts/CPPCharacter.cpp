@@ -3,7 +3,6 @@
 
 #include "CPPCharacter.h"
 #include "Camera/CameraComponent.h"
-// boundbox
 #include "Components/CapsuleComponent.h"
 #include "DoorInterface.h"
 
@@ -39,26 +38,29 @@ void ACPPCharacter::Tick(float DeltaTime)
 void ACPPCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ACPPCharacter::OnInteract);
 }
 
-void ACPPCharacter::Interact()
+
+void ACPPCharacter::OnInteract()
 {
-	TArray<AActor*> OverlappingActors;
-	GetCapsuleComponent()->GetOverlappingActors(OverlappingActors);
-	UE_LOG(LogTemp, Log, TEXT("Number of overlapping actors: %d"), OverlappingActors.Num());
-	for (AActor* Actor : OverlappingActors)
+	FHitResult HitResult;
+	FVector Start = Camera->GetComponentLocation();
+	FVector End = Start + Camera->GetForwardVector() * 200.0f;
+
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params))
 	{
-		if (!Actor)
-			continue;
-		if (Actor->GetClass()->ImplementsInterface(UDoorInterface::StaticClass()))
+		AActor* HitActor = HitResult.GetActor();
+		if (HitActor && HitActor->GetClass()->ImplementsInterface(UDoorInterface::StaticClass()))
 		{
-			UE_LOG(LogTemp, Log, TEXT("Interacting with: %s"), *Actor->GetName());
-			UE_LOG(LogTemp, Log, TEXT("Interact called by: %s"), *GetName());
-			UE_LOG(LogTemp, Warning, TEXT("Interact() called on %s at frame %d"), *GetName(), GFrameCounter);
-			UE_LOG(LogTemp, Warning, TEXT("Did This call Twice? Owning Actor: %s | Component Name: %s"), *GetOwner()->GetName(), *GetName());
-			//IDoorInterface::Execute_OpenDoor(Actor, this);
-			break;
+			IDoorInterface::Execute_OnInteract(HitActor); // 'this' is the interactor
 		}
+		//if (OverlappingActor && OverlappingActor->GetClass()->ImplementsInterface(UDoorInterface::StaticClass()))
+		//{
+			//IDoorInterface::Execute_OnInteract(OverlappingActor);
+		//}
 	}
 }
