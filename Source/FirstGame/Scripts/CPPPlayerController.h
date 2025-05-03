@@ -22,4 +22,5 @@ private:
 	void Move_Right(float Value);
 	void Turn(float Value);
 	void Jump();
+	void Interact();
 };
